@@ -24,8 +24,6 @@
 	var/mob/living/silicon/ai/mainframe = null
 	var/datum/action/innate/undeployment/undeployment_action = new
 
-	/// the last health before updating - to check net change in health
-	var/previous_health
 //Hud stuff
 
 	var/obj/screen/inv1 = null
@@ -42,9 +40,6 @@
 	var/obj/item/robot_module/module = null
 	var/obj/item/module_active = null
 	held_items = list(null, null, null) //we use held_items for the module holding, because that makes sense to do!
-
-	/// For checking which modules are disabled or not.
-	var/disabled_modules
 
 	var/mutable_appearance/eye_lights
 
@@ -114,8 +109,6 @@
 	robot_modules_background.plane = HUD_PLANE
 
 	ident = rand(1, 999)
-
-	previous_health = health
 
 	if(ispath(cell))
 		cell = new cell(src)
@@ -226,6 +219,7 @@
 		return
 
 	module.transform_to(modulelist[input_module])
+
 
 /mob/living/silicon/robot/proc/updatename(client/C)
 	if(shell)
@@ -711,30 +705,21 @@
 
 /mob/living/silicon/robot/updatehealth()
 	..()
-
-	/// the current percent health of the robot (-1 to 1)
-	var/percent_hp = health/maxHealth
-	if(health <= previous_health) //if change in health is negative (we're losing hp)
-		if(percent_hp <= 0.5)
-			break_cyborg_slot(3)
-
-		if(percent_hp <= 0)
-			break_cyborg_slot(2)
-
-		if(percent_hp <= -0.5)
-			break_cyborg_slot(1)
-
-	else //if change in health is positive (we're gaining hp)
-		if(percent_hp >= 0.5)
-			repair_cyborg_slot(3)
-
-		if(percent_hp >= 0)
-			repair_cyborg_slot(2)
-
-		if(percent_hp >= -0.5)
-			repair_cyborg_slot(1)
-
-	previous_health = health
+	if(health < maxHealth*0.5) //Gradual break down of modules as more damage is sustained
+		if(uneq_module(held_items[3]))
+			playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, TRUE, TRUE)
+			audible_message("<span class='warning'>[src] sounds an alarm! \"SYSTEM ERROR: Module 3 OFFLINE.\"</span>")
+			to_chat(src, "<span class='userdanger'>SYSTEM ERROR: Module 3 OFFLINE.</span>")
+		if(health < 0)
+			if(uneq_module(held_items[2]))
+				audible_message("<span class='warning'>[src] sounds an alarm! \"SYSTEM ERROR: Module 2 OFFLINE.\"</span>")
+				to_chat(src, "<span class='userdanger'>SYSTEM ERROR: Module 2 OFFLINE.</span>")
+				playsound(loc, 'sound/machines/warning-buzzer.ogg', 60, TRUE, TRUE)
+			if(health < -maxHealth*0.5)
+				if(uneq_module(held_items[1]))
+					audible_message("<span class='warning'>[src] sounds an alarm! \"CRITICAL ERROR: All modules OFFLINE.\"</span>")
+					to_chat(src, "<span class='userdanger'>CRITICAL ERROR: All modules OFFLINE.</span>")
+					playsound(loc, 'sound/machines/warning-buzzer.ogg', 75, TRUE, TRUE)
 
 /mob/living/silicon/robot/update_sight()
 	if(!client)
