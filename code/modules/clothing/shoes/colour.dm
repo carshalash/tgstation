@@ -11,7 +11,7 @@
 
 /obj/item/clothing/shoes/sneakers/black
 	name = "black shoes"
-	desc = "A pair of black shoes."
+	desc = "Well la di da Mr Gucci Loafers."
 	greyscale_colors = "#545454#ffffff"
 	custom_price = PAYCHECK_ASSISTANT
 

@@ -580,7 +580,7 @@
 /obj/item/clothing/shoes/chameleon
 	name = "black shoes"
 	icon_state = "black"
-	desc = "A pair of black shoes."
+	desc = "Well la di da Mr Gucci Loafers"
 	permeability_coefficient = 0.05
 	resistance_flags = NONE
 	armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
@@ -605,7 +605,7 @@
 /obj/item/clothing/shoes/chameleon/noslip
 	name = "black shoes"
 	icon_state = "black"
-	desc = "A pair of black shoes."
+	desc = "Well la di da Mr Gucci Loafers."
 	clothing_flags = NOSLIP
 	can_be_bloody = FALSE
 
