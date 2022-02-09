@@ -102,6 +102,7 @@
 /datum/food_processor_process/soybeans
 	input = /obj/item/food/grown/soybeans
 	output = /obj/item/food/soydope
+	preserve_materials = TRUE
 
 /datum/food_processor_process/spaghetti
 	input = /obj/item/food/doughslice
