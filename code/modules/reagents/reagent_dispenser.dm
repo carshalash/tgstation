@@ -178,7 +178,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/peppertank, 3
 	desc = "A machine that dispenses liquid to drink."
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "water_cooler"
-	anchored = TRUE
+	anchored = FALSE
 	tank_volume = 500
 	var/paper_cups = 25 //Paper cups left from the cooler
 
