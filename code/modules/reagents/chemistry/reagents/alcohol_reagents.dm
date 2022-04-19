@@ -2586,7 +2586,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	description = "A vile blend of protein, pure grain alcohol, korta flour, and blood. Useful for bulking up, if you can keep it down."
 	boozepwr = 65
 	color = "#FF5B69"
-	quality = DRINK_GROSS
+	quality = DRINK_NICE
 	taste_description = "regret"
 	glass_icon_state = "protein_blend"
 	glass_name = "Protein Blend"
@@ -2600,7 +2600,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		drinker.adjust_disgust(5 * REM * delta_time)
 	else
 		drinker.adjust_disgust(2 * REM * delta_time)
-		quality = DRINK_SPECIES
 	..()
 
 /datum/reagent/consumable/ethanol/mushi_kombucha
