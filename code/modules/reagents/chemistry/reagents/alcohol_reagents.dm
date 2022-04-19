@@ -2598,9 +2598,9 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	drinker.adjust_nutrition(2 * REM * delta_time)
 	if(!islizard(drinker))
 		drinker.adjust_disgust(5 * REM * delta_time)
-		quality = DRINK_SPECIES
 	else
 		drinker.adjust_disgust(2 * REM * delta_time)
+		quality = DRINK_SPECIES
 	..()
 
 /datum/reagent/consumable/ethanol/mushi_kombucha
