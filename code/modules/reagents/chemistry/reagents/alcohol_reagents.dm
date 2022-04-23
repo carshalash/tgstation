@@ -2595,7 +2595,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/protein_blend/on_mob_life(mob/living/carbon/drinker, delta_time, times_fired)
 	drinker.adjust_nutrition(2 * REM * delta_time)
-	if(!islizard(drinker))
+	if(islizard(drinker))
 		drinker.adjust_disgust(5 * REM * delta_time)
 		quality = DRINK_SPECIES
 	else
