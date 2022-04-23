@@ -2631,7 +2631,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	if(islizard(drinker))
 		SEND_SIGNAL(drinker, COMSIG_ADD_MOOD_EVENT, "triumph", /datum/mood_event/memories_of_home, name)
 	else
-		quality = Drink_gross
+		quality = DRINK_GROSS
 	..()
 
 /datum/reagent/consumable/ethanol/the_juice
