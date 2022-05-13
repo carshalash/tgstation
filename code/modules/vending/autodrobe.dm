@@ -77,15 +77,15 @@
 		/obj/item/clothing/mask/gas/sexymime = 1,
 		/obj/item/clothing/under/rank/civilian/mime/sexy = 1,
 		/obj/item/clothing/under/rank/civilian/mime/skirt = 1,
-		/obj/item/clothing/mask/animal/rat/bat = 1,
-		/obj/item/clothing/mask/animal/rat/bee = 1,
-		/obj/item/clothing/mask/animal/rat/bear = 1,
-		/obj/item/clothing/mask/animal/rat/raven = 1,
-		/obj/item/clothing/mask/animal/rat/jackal = 1,
-		/obj/item/clothing/mask/animal/rat/fox = 1,
+		/obj/item/clothing/mask/animal/small/bat = 1,
+		/obj/item/clothing/mask/animal/small/bee = 1,
+		/obj/item/clothing/mask/animal/small/bear = 1,
+		/obj/item/clothing/mask/animal/small/raven = 1,
+		/obj/item/clothing/mask/animal/small/jackal = 1,
+		/obj/item/clothing/mask/animal/small/fox = 1,
 		/obj/item/clothing/mask/animal/frog = 1,
-		/obj/item/clothing/mask/animal/rat/tribal = 1,
-		/obj/item/clothing/mask/animal/rat = 1,
+		/obj/item/clothing/mask/animal/small/tribal = 1,
+		/obj/item/clothing/mask/animal/small/rat = 1,
 		/obj/item/clothing/mask/animal/pig = 1,
 		/obj/item/clothing/mask/animal/cowmask = 1,
 		/obj/item/clothing/mask/animal/horsehead = 1,
@@ -166,8 +166,8 @@
 		/obj/item/storage/belt/cummerbund = 1
 	)
 	refill_canister = /obj/item/vending_refill/autodrobe
-	default_price = PAYCHECK_ASSISTANT * 0.8 //Default of 40.
-	extra_price = PAYCHECK_HARD
+	default_price = PAYCHECK_CREW * 0.8 //Default of 40.
+	extra_price = PAYCHECK_COMMAND
 	payment_department = ACCOUNT_SRV
 	light_mask="theater-light-mask"
 
