@@ -195,13 +195,13 @@
 
 /obj/item/circuitboard/machine/pacman/examine(mob/user)
 	. = ..()
-	var/message = high_production_profile ? "high production - high consumption" : "low production - low consumption"
+	var/message = high_production_profile ? "high-power uranium mode" : "medium-power plasma mode"
 	. += span_notice("It's set to [message].")
 	. += span_notice("You can switch the mode by using a screwdriver on [src].")
 
 /obj/item/circuitboard/machine/pacman/screwdriver_act(mob/living/user, obj/item/tool)
 	high_production_profile = !high_production_profile
-	var/message = high_production_profile ? "high production - high consumption" : "low production - low consumption"
+	var/message = high_production_profile ? "high-power uranium mode" : "medium-power plasma mode"
 	to_chat(user, span_notice("You set the board for [message]"))
 
 /obj/item/circuitboard/machine/turbine_compressor
@@ -1029,21 +1029,21 @@
 	build_path = /obj/machinery/chem_master/condimaster
 
 /obj/item/circuitboard/machine/deep_fryer
-	name = "circuit board (Deep Fryer)"
+	name = "Deep Fryer (Machine Board)"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/deepfryer
 	req_components = list(/obj/item/stock_parts/micro_laser = 1)
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/griddle
-	name = "circuit board (Griddle)"
+	name = "Griddle (Machine Board)"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/griddle
 	req_components = list(/obj/item/stock_parts/micro_laser = 1)
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/oven
-	name = "circuit board (Oven)"
+	name = "Oven (Machine Board)"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/oven
 	req_components = list(/obj/item/stock_parts/micro_laser = 1)
