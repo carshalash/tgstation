@@ -52,8 +52,8 @@
 	/// The job's outfit that will be assigned for plasmamen.
 	var/plasmaman_outfit = null
 
-	/// Minutes of experience-time required to play in this job. The type is determined by [exp_required_type] and [exp_required_type_department] depending on configs.
-	var/exp_requirements = 0
+	/// Hours of experience-time required to play in this job. There are codebase defined constants for this, but this can be overwritten via config using `USE_EXP_RESTRICTIONS_HEADS_HOURS`.
+	var/exp_requirements = 0 HOURS
 	/// Experience required to play this job, if the config is enabled, and `exp_required_type_department` is not enabled with the proper config.
 	var/exp_required_type = ""
 	/// Department experience required to play this job, if the config is enabled.
@@ -214,10 +214,21 @@
 /datum/job/proc/available_in_days(client/player)
 	if(!player)
 		return 0
+
 	if(!CONFIG_GET(flag/use_age_restriction_for_jobs))
 		return 0
+
+	//Without a database connection we can't get a player's age so we'll assume they're old enough for all jobs
 	if(!SSdbcore.Connect())
-		return 0 //Without a database connection we can't get a player's age so we'll assume they're old enough for all jobs
+		return 0
+
+	// As of the time of writing this comment, verifying database connection isn't "solved". Sometimes rust-g will report a
+	// connection mid-shift despite the database dying.
+	// If the client age is -1, it means that no code path has overwritten it. Even first time connections get it set to 0,
+	// so it's a pretty good indication of a database issue. We'll again just assume they're old enough for all jobs.
+	if(player.player_age == -1)
+		return 0
+
 	if(!isnum(minimal_player_age))
 		return 0
 

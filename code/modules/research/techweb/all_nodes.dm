@@ -20,6 +20,9 @@
 		"c-reader",
 		"circuit_imprinter",
 		"circuit_imprinter_offstation",
+		"coffeemaker",
+		"coffeepot",
+		"coffee_cartridge",
 		"conveyor_belt",
 		"conveyor_switch",
 		"design_disk",
@@ -29,6 +32,7 @@
 		"doppler_array",
 		"experi_scanner",
 		"experimentor",
+		"fax",
 		"gas_filter",
 		"handlabel",
 		"mechfab",
@@ -61,6 +65,7 @@
 		"titaniumglass",
 		"toner",
 		"toner_large",
+		"trapdoor_electronics",
 		"turbine_part_compressor",
 		"turbine_part_rotor",
 		"turbine_part_stator",
@@ -277,7 +282,6 @@
 		"comp_ntnet_send",
 		"comp_pinpointer",
 		"comp_pressuresensor",
-		"comp_printer",
 		"comp_radio",
 		"comp_random",
 		"comp_reagents",
@@ -322,7 +326,6 @@
 		"chem_mass_spec",
 		"chem_master",
 		"chem_pack",
-		"crewpinpointerprox",
 		"defibmount",
 		"defibrillator",
 		"genescanner",
@@ -358,7 +361,7 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 	required_experiments = list(/datum/experiment/dissection/nonhuman)
-	discount_experiments = list(/datum/experiment/scanning/random/material/meat = 4000) //Big discount to reinforce doing it.
+	discount_experiments = list(/datum/experiment/scanning/random/material/meat = 4000)
 
 /datum/techweb_node/xenoorgan_biotech
 	id = "xenoorgan_bio"
@@ -549,9 +552,11 @@
 		"sheetifier",
 		"weldingmask",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
-	required_experiments = list(/datum/experiment/ordnance/gaseous/bz)
-	discount_experiments = list(/datum/experiment/scanning/random/material/medium/one = 4000)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 15000)
+	discount_experiments = list(
+		/datum/experiment/scanning/random/material/medium/one = 4000,
+		/datum/experiment/ordnance/gaseous/bz = 10000,
+	)
 
 /datum/techweb_node/anomaly
 	id = "anomaly_research"
@@ -661,6 +666,7 @@
 	design_ids = list(
 		"bluespacebeaker",
 		"bluespacesyringe",
+		"bluespace_coffeepot",
 		"bs_rped",
 		"minerbag_holding",
 		"ore_silo",
@@ -740,6 +746,7 @@
 		"dispenser_shell",
 		"door_shell",
 		"gun_shell",
+		"keyboard_shell",
 		"module_shell",
 		"money_bot_shell",
 		"scanner_gate_shell",
@@ -984,9 +991,11 @@
 	design_ids = list(
 		"quadultra_micro_laser",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
-	discount_experiments = list(/datum/experiment/scanning/points/machinery_pinpoint_scan/tier3_microlaser = 4000)
-	required_experiments = list(/datum/experiment/ordnance/gaseous/noblium)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 15000)
+	discount_experiments = list(
+		/datum/experiment/scanning/points/machinery_pinpoint_scan/tier3_microlaser = 4000,
+		/datum/experiment/ordnance/gaseous/noblium = 10000,
+	)
 
 /////////////////////////Clown tech/////////////////////////
 /datum/techweb_node/clown
@@ -1204,7 +1213,6 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
 
-
 /datum/techweb_node/cyber_organs_upgraded
 	id = "cyber_organs_upgraded"
 	display_name = "Upgraded Cybernetic Organs"
@@ -1346,6 +1354,7 @@
 		"jawsoflife",
 		"laserscalpel",
 		"mechanicalpinches",
+		"rangedanalyzer",
 		"searingtool",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
@@ -1403,8 +1412,8 @@
 		"pin_testing",
 		"tele_shield",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
-	required_experiments = list(/datum/experiment/ordnance/explosive/pressurebomb)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 20000)
+	discount_experiments = list(/datum/experiment/ordnance/explosive/pressurebomb = 10000)
 
 /datum/techweb_node/adv_weaponry
 	id = "adv_weaponry"
@@ -1657,7 +1666,7 @@
 	id = "mech_gygax"
 	display_name = "EXOSUIT: Gygax"
 	description = "Gygax exosuit designs"
-	prereq_ids = list("adv_mecha", "weaponry")
+	prereq_ids = list("adv_mecha", "adv_mecha_armor")
 	design_ids = list(
 		"gygax_armor",
 		"gygax_chassis",
@@ -1678,7 +1687,7 @@
 	id = "mech_durand"
 	display_name = "EXOSUIT: Durand"
 	description = "Durand exosuit designs"
-	prereq_ids = list("adv_mecha", "adv_weaponry")
+	prereq_ids = list("adv_mecha", "adv_mecha_armor")
 	design_ids = list(
 		"durand_armor",
 		"durand_chassis",
@@ -1699,7 +1708,7 @@
 	id = "mecha_phazon"
 	display_name = "EXOSUIT: Phazon"
 	description = "Phazon exosuit designs"
-	prereq_ids = list("adv_mecha", "weaponry" , "micro_bluespace")
+	prereq_ids = list("adv_mecha", "adv_mecha_armor" , "micro_bluespace")
 	design_ids = list(
 		"phazon_armor",
 		"phazon_chassis",
@@ -1760,22 +1769,24 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
-/datum/techweb_node/mech_modules
-	id = "adv_mecha_modules"
-	display_name = "Simple Exosuit Modules"
-	description = "An advanced piece of mech weaponry"
+/datum/techweb_node/mech_armor
+	id = "adv_mecha_armor"
+	display_name = "Exosuit Heavy Armor Research"
+	description = "Recreating heavy armor with new rapid fabrication techniques."
 	prereq_ids = list("adv_mecha", "bluespace_power")
 	design_ids = list(
 		"mech_ccw_armor",
 		"mech_proj_armor",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+	required_experiments = list(/datum/experiment/scanning/random/mecha_damage_scan)
+	discount_experiments = list(/datum/experiment/scanning/random/mecha_destroyed_scan = 5000)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
 
 /datum/techweb_node/mech_scattershot
 	id = "mecha_tools"
 	display_name = "Exosuit Weapon (LBX AC 10 \"Scattershot\")"
 	description = "An advanced piece of mech weaponry"
-	prereq_ids = list("exotic_ammo")
+	prereq_ids = list("adv_mecha")
 	design_ids = list(
 		"mech_scattershot",
 		"mech_scattershot_ammo",
@@ -1837,7 +1848,7 @@
 	id = "mech_disabler"
 	display_name = "Exosuit Weapon (CH-DS \"Peacemaker\" Mounted Disabler)"
 	description = "A basic piece of mech weaponry"
-	prereq_ids = list("beam_weapons")
+	prereq_ids = list("adv_mecha")
 	design_ids = list(
 		"mech_disabler",
 	)
@@ -1900,7 +1911,7 @@
 	id = "mech_lmg"
 	display_name = "Exosuit Weapon (\"Ultra AC 2\" LMG)"
 	description = "An advanced piece of mech weaponry"
-	prereq_ids = list("exotic_ammo")
+	prereq_ids = list("adv_mecha")
 	design_ids = list(
 		"mech_lmg",
 		"mech_lmg_ammo",
@@ -1985,8 +1996,8 @@
 		/obj/item/wrench/abductor,
 	)
 
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
-	required_experiments = list(/datum/experiment/scanning/points/slime/hard)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 12500)
+	discount_experiments = list(/datum/experiment/scanning/points/slime/hard = 10000)
 	hidden = TRUE
 
 /datum/techweb_node/alien_engi
@@ -2035,6 +2046,7 @@
 		"largecrossbow",
 		"rapidsyringe",
 		"suppressor",
+		"super_pointy_tape",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
 	hidden = TRUE
