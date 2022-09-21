@@ -213,6 +213,7 @@
 /obj/item/food/spidereggs
 	name = "spider eggs"
 	desc = "A cluster of juicy spider eggs. A great side dish for when you care not for your health."
+	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "spidereggs"
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/toxin = 2)
 	tastes = list("cobwebs" = 1)
@@ -231,6 +232,7 @@
 /obj/item/food/spiderling
 	name = "spiderling"
 	desc = "It's slightly twitching in your hand. Ew..."
+	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "spiderling"
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 2, /datum/reagent/toxin = 4)
 	tastes = list("cobwebs" = 1, "guts" = 2)
@@ -899,3 +901,33 @@
 	tastes = list()
 	icon_state = "onigiri"
 	desc = "A ball of cooked rice surrounding a filling formed into a triangular shape and wrapped in seaweed."
+
+/obj/item/food/mashed_potatoes
+	name = "mashed potatoes"
+	desc = "A creamy serving of mashed potatoes, a staple of many Thanksgiving dinners."
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "mashed_potatoes"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/nutriment/vitamin = 5)
+	tastes = list("creamy mashed potatoes" = 1, "garlic" = 1)
+	foodtypes = VEGETABLES | DAIRY
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/food/pacoca
+	name = "pacoca"
+	desc = "A traditional Brazilian treat made of ground peanuts, sugar, and salt compressed into a cylinder."
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "pacoca"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/nutriment/protein = 2)
+	tastes = list("peanuts" = 1, "sweetness" = 1)
+	foodtypes = NUTS | SUGAR
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/food/pickle
+	name = "pickle"
+	desc = "Slightly shriveled darkish cucumber. Smelling something sour, but incredibly inviting."
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "pickle"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/medicine/antihol = 2)
+	tastes = list("pickle" = 1, "spices" = 1, "salt water" = 2)
+	foodtypes = VEGETABLES
+	w_class = WEIGHT_CLASS_SMALL

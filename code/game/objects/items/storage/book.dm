@@ -30,8 +30,8 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 	icon_state = "bible"
 	inhand_icon_state = "bible"
 	worn_icon_state = "bible"
-	lefthand_file = 'icons/mob/inhands/misc/books_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/misc/books_righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/items/books_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/items/books_righthand.dmi'
 	var/mob/affecting = null
 	var/deity_name = "Christ"
 	force_string = "holy"
@@ -101,7 +101,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 		return FALSE
 	if(!istype(user) || !user.is_holding(src))
 		return FALSE
-	if(!user.can_read(src) || user.is_blind() || user.incapacitated())
+	if(user.incapacitated())
 		return FALSE
 	if(user.mind?.holy_role != HOLY_ROLE_HIGHPRIEST)
 		return FALSE
