@@ -349,11 +349,12 @@
 
 /datum/disease/transformation/felinid
 
-	name = "Robotic Transformation"
+	name = "Tabby Transformation"
 	cure_text = "An animal toxic dosage of chocolate."
 	cures = list(/datum/reagent/consumable/coco)
 	cure_chance = 55
 	agent = "Toxoplasma Godii"
+	viable_mobtypes = list(/mob/living/carbon/human)
 	desc = "Nanotrasen has truly gone too far this time."
 	severity = DISEASE_SEVERITY_BIOHAZARD
 	visibility_flags = NONE
@@ -366,7 +367,7 @@
 	
 
 
-/datum/disease/transformation/robot/stage_act(delta_time, times_fired)
+/datum/disease/transformation/felinid/stage_act(delta_time, times_fired)
 	. = ..()
 	if(!.)
 		return
@@ -374,10 +375,10 @@
 	switch(stage)
 		if(3)
 			if (DT_PROB(4, delta_time))
-				affected_mob.say(pick("Beep, boop", "beep, beep!", "Boop...bop"), forced = "robotic transformation")
+				affected_mob.say(pick("Beep, boop", "beep, beep!", "Boop...bop"), forced = "tabby transformation")
 			if (DT_PROB(2, delta_time))
-				to_chat(affected_mob, span_danger("You feel a stabbing pain in your head."))
+				to_chat(affected_mob, span_danger("You feel an inching on your scalp."))
 				affected_mob.Unconscious(40)
 		if(4)
 			if (DT_PROB(10, delta_time))
-				affected_mob.say(pick("beep, beep!", "Boop bop boop beep.", "kkkiiiill mmme", "I wwwaaannntt tttoo dddiiieeee..."), forced = "robotic transformation")
+				affected_mob.say(pick("beep, beep!", "Boop bop boop beep.", "kkkiiiill mmme", "I wwwaaannntt tttoo dddiiieeee..."), forced = "tabby transformation")
