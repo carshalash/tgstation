@@ -354,7 +354,6 @@
 	cures = list(/datum/reagent/consumable/coco)
 	cure_chance = 55
 	agent = "Toxoplasma Godii"
-	viable_mobtypes = list(/mob/living/carbon/human)
 	desc = "Nanotrasen has truly gone too far this time."
 	severity = DISEASE_SEVERITY_BIOHAZARD
 	visibility_flags = NONE
@@ -365,7 +364,6 @@
 	stage5 = list("<span class='danger'>Your skin feels as if it's about to burst off!</span>")
 	new_form = /mob/living/carbon/human/species/felinid
 	
-
 
 /datum/disease/transformation/felinid/stage_act(delta_time, times_fired)
 	. = ..()
