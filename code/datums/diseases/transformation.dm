@@ -346,3 +346,38 @@
 				if(held_item)
 					to_chat(affected_mob, span_danger("You let go of what you were holding."))
 					affected_mob.dropItemToGround(held_item)
+
+/datum/disease/transformation/felinid
+
+	name = "Robotic Transformation"
+	cure_text = "An animal toxic dosage of chocolate."
+	cures = list(/datum/reagent/consumable/coco)
+	cure_chance = 55
+	agent = "Toxoplasma Godii"
+	desc = "Nanotrasen has truly gone too far this time."
+	severity = DISEASE_SEVERITY_BIOHAZARD
+	visibility_flags = NONE
+	stage1 = list()
+	stage2 = list("Your joints feel stiff.", "<span class='danger'>Beep...boop..</span>")
+	stage3 = list("<span class='danger'>Your joints feel very stiff.</span>", "Your skin feels loose.", "<span class='danger'>You can feel something move...inside.</span>")
+	stage4 = list("<span class='danger'>Your skin feels very loose.</span>", "<span class='danger'>You can feel... something...inside you.</span>")
+	stage5 = list("<span class='danger'>Your skin feels as if it's about to burst off!</span>")
+	new_form = /mob/living/carbon/human/species/felinid
+	
+
+
+/datum/disease/transformation/robot/stage_act(delta_time, times_fired)
+	. = ..()
+	if(!.)
+		return
+
+	switch(stage)
+		if(3)
+			if (DT_PROB(4, delta_time))
+				affected_mob.say(pick("Beep, boop", "beep, beep!", "Boop...bop"), forced = "robotic transformation")
+			if (DT_PROB(2, delta_time))
+				to_chat(affected_mob, span_danger("You feel a stabbing pain in your head."))
+				affected_mob.Unconscious(40)
+		if(4)
+			if (DT_PROB(10, delta_time))
+				affected_mob.say(pick("beep, beep!", "Boop bop boop beep.", "kkkiiiill mmme", "I wwwaaannntt tttoo dddiiieeee..."), forced = "robotic transformation")
