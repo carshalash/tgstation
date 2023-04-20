@@ -106,8 +106,8 @@
 	if(mmi)
 		if(mmi.brain)
 			mmi.brain.suicided = suicide_state
-		if(mmi.brainmob)
-			mmi.brainmob.suiciding = suicide_state
+		if(suicide_state && mmi.brainmob)
+			ADD_TRAIT(mmi.brainmob, TRAIT_SUICIDED, REF(src))
 
 /**
  * Sets the tablet theme and icon
@@ -754,9 +754,8 @@
 		hands.icon_state = model.model_select_icon
 
 	REMOVE_TRAITS_IN(src, MODEL_TRAIT)
-	if(model.model_traits)
-		for(var/trait in model.model_traits)
-			ADD_TRAIT(src, trait, MODEL_TRAIT)
+	if(length(model.model_traits))
+		add_traits(model.model_traits, MODEL_TRAIT)
 
 	hat_offset = model.hat_offset
 
@@ -968,10 +967,12 @@
 		for(var/i in connected_ai.aicamera.stored)
 			aicamera.stored[i] = TRUE
 
-/mob/living/silicon/robot/proc/charge(datum/source, amount, repairs)
+/mob/living/silicon/robot/proc/charge(datum/source, amount, repairs, sendmats)
 	SIGNAL_HANDLER
 	if(model)
 		model.respawn_consumable(src, amount * 0.005)
+		if(sendmats)
+			model.restock_consumable()
 	if(cell)
 		cell.charge = min(cell.charge + amount, cell.maxcharge)
 	if(repairs)
