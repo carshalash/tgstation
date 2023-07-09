@@ -97,7 +97,7 @@
 
 /datum/food_processor_process/spidereggs
 	input = /obj/item/food/spidereggs
-	blacklist = /obj/item/food/spidereggs/processed
+	blacklist = (/obj/item/food/spidereggs/processed)
 	output = /obj/item/food/spidereggs/processed
 
 /datum/food_processor_process/potato
