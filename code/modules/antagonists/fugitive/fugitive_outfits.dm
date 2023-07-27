@@ -22,7 +22,7 @@
 	mask = /obj/item/clothing/mask/gas/tiki_mask/yalp_elor
 
 /datum/outfit/waldo
-	name = "Waldo"
+	name = "Wally"
 	uniform = /obj/item/clothing/under/pants/jeans
 	suit = /obj/item/clothing/suit/costume/striped_sweater
 	head = /obj/item/clothing/head/waldo
@@ -35,7 +35,7 @@
 	equipped_on.update_worn_undersuit()
 	if(visualsOnly)
 		return
-	equipped_on.fully_replace_character_name(null, "Waldo")
+	equipped_on.fully_replace_character_name(null, "Wally")
 	equipped_on.eye_color_left = "#000000"
 	equipped_on.eye_color_right = "#000000"
 	equipped_on.gender = MALE
