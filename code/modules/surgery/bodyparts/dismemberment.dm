@@ -185,38 +185,6 @@
 		var/datum/wound/loss/dismembering = new
 		return dismembering.apply_dismember(src, wounding_type)
 
-/obj/item/organ/internal/eyes/on_bodypart_insert(obj/item/bodypart/head/head)
-	head.eyes = src
-	..()
-
-/obj/item/organ/internal/ears/on_bodypart_insert(obj/item/bodypart/head/head)
-	head.ears = src
-	..()
-
-/obj/item/organ/internal/tongue/on_bodypart_insert(obj/item/bodypart/head/head)
-	head.tongue = src
-	..()
-
-/obj/item/organ/internal/brain/on_bodypart_insert(obj/item/bodypart/head/head)
-	head.brain = src
-	..()
-
-/obj/item/organ/internal/eyes/on_bodypart_remove(obj/item/bodypart/head/head)
-	head.eyes = null
-	..()
-
-/obj/item/organ/internal/ears/on_bodypart_remove(obj/item/bodypart/head/head)
-	head.ears = null
-	..()
-
-/obj/item/organ/internal/tongue/on_bodypart_remove(obj/item/bodypart/head/head)
-	head.tongue = null
-	..()
-
-/obj/item/organ/internal/brain/on_bodypart_remove(obj/item/bodypart/head/head)
-	head.brain = null
-	..()
-
 /obj/item/bodypart/chest/drop_limb(special, dismembered, move_to_floor = TRUE)
 	if(special)
 		return ..()
