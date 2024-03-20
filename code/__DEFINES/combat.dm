@@ -338,13 +338,13 @@ GLOBAL_LIST_INIT(arm_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
 	#define COMPONENT_AUTOFIRE_SHOT_SUCCESS (1<<0)
 
 /// Martial arts attack requested but is not available, allow a check for a regular attack.
-#define MARTIAL_ATTACK_INVALID -1
+#define MARTIAL_ATTACK_INVALID NONE
 
 /// Martial arts attack happened but failed, do not allow a check for a regular attack.
-#define MARTIAL_ATTACK_FAIL FALSE
+#define MARTIAL_ATTACK_FAIL COMPONENT_SKIP_ATTACK
 
 /// Martial arts attack happened and succeeded, do not allow a check for a regular attack.
-#define MARTIAL_ATTACK_SUCCESS TRUE
+#define MARTIAL_ATTACK_SUCCESS COMPONENT_CANCEL_ATTACK_CHAIN
 
 /// IF an object is weak against armor, this is the value that any present armor is multiplied by
 #define ARMOR_WEAKENED_MULTIPLIER 2
@@ -385,3 +385,8 @@ GLOBAL_LIST_INIT(arm_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
 #define SHOVE_BLOCKED (1<<5)
 ///If the obstacle is an object at the border of the turf (so no signal from being sent to the other turf)
 #define SHOVE_DIRECTIONAL_BLOCKED (1<<6)
+
+///Deathmatch lobby current status
+#define DEATHMATCH_NOT_PLAYING 0
+#define DEATHMATCH_PRE_PLAYING 1
+#define DEATHMATCH_PLAYING 2

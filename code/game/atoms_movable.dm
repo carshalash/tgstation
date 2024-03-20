@@ -69,7 +69,7 @@
 	var/movement_type = GROUND
 
 	var/atom/movable/pulling
-	var/grab_state = 0
+	var/grab_state = GRAB_PASSIVE
 	/// The strongest grab we can acomplish
 	var/max_grab = GRAB_KILL
 	var/throwforce = 0
@@ -115,6 +115,14 @@
 	/// How much we as a source block explosions by
 	/// Will not automatically apply to the turf below you, you need to apply /datum/element/block_explosives in conjunction with this
 	var/explosion_block = 0
+
+	// Access levels, used in modules\jobs\access.dm
+	/// List of accesses needed to use this object: The user must possess all accesses in this list in order to use the object.
+	/// Example: If req_access = list(ACCESS_ENGINE, ACCESS_CE)- then the user must have both ACCESS_ENGINE and ACCESS_CE in order to use the object.
+	var/list/req_access
+	/// List of accesses needed to use this object: The user must possess at least one access in this list in order to use the object.
+	/// Example: If req_one_access = list(ACCESS_ENGINE, ACCESS_CE)- then the user must have either ACCESS_ENGINE or ACCESS_CE in order to use the object.
+	var/list/req_one_access
 
 /mutable_appearance/emissive_blocker
 
@@ -178,11 +186,11 @@
 	if(opacity)
 		AddElement(/datum/element/light_blocking)
 	switch(light_system)
-		if(MOVABLE_LIGHT)
+		if(OVERLAY_LIGHT)
 			AddComponent(/datum/component/overlay_lighting)
-		if(MOVABLE_LIGHT_DIRECTIONAL)
+		if(OVERLAY_LIGHT_DIRECTIONAL)
 			AddComponent(/datum/component/overlay_lighting, is_directional = TRUE)
-		if(MOVABLE_LIGHT_BEAM)
+		if(OVERLAY_LIGHT_BEAM)
 			AddComponent(/datum/component/overlay_lighting, is_directional = TRUE, is_beam = TRUE)
 
 /atom/movable/Destroy(force)
@@ -422,7 +430,7 @@
 	if(z_move_flags & ZMOVE_CAN_FLY_CHECKS && !(movement_type & (FLYING|FLOATING)) && has_gravity(start))
 		if(z_move_flags & ZMOVE_FEEDBACK)
 			if(rider)
-				to_chat(rider, span_warning("[src] is is not capable of flight."))
+				to_chat(rider, span_warning("[src] [p_are()] incapable of flight."))
 			else
 				to_chat(src, span_warning("You are not Superman."))
 		return FALSE
