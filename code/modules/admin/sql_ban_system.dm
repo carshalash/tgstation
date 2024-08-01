@@ -391,12 +391,12 @@
 				ROLE_REV,
 				ROLE_REVENANT,
 				ROLE_REV_HEAD,
-				ROLE_SENTIENT_DISEASE,
 				ROLE_SPIDER,
 				ROLE_SPY,
 				ROLE_SYNDICATE,
 				ROLE_TRAITOR,
 				ROLE_WIZARD,
+				ROLE_VOIDWALKER,
 			),
 		)
 		for(var/department in long_job_lists)
