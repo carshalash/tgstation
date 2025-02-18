@@ -10,8 +10,8 @@
 		new /obj/item/swab(src)
 
 /obj/item/storage/box/petridish
-	name = "box of petridishes"
-	desc = "This box purports to contain a number of high rim petridishes."
+	name = "box of petri dishes"
+	desc = "This box purports to contain a number of high rim petri dishes."
 	illustration = "petridish"
 
 /obj/item/storage/box/petridish/PopulateContents()
@@ -39,6 +39,7 @@
 	illustration = null
 	/// Which type of cube are we spawning in this box?
 	var/cube_type = /obj/item/food/monkeycube
+	custom_price = PAYCHECK_CREW * 2
 
 /obj/item/storage/box/monkeycubes/Initialize(mapload)
 	. = ..()
