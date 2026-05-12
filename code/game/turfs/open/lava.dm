@@ -23,6 +23,7 @@
 	clawfootstep = FOOTSTEP_LAVA
 	heavyfootstep = FOOTSTEP_LAVA
 	rust_resistance = RUST_RESISTANCE_ABSOLUTE
+	turf_flags = NO_RUST
 	/// How much fire damage we deal to living mobs stepping on us
 	var/lava_damage = 20
 	/// How many firestacks we add to living mobs stepping on us
@@ -352,7 +353,7 @@
  */
 /turf/open/lava/proc/drop_contents_into_lava()
 	SIGNAL_HANDLER
-	balloon_alert_to_viewers("[pick("splash","pshhhh","hiss","blorble")]!")
+	balloon_alert_to_hearers("[pick("splash","pshhhh","hiss","blorble")]!")
 	playsound(src, 'sound/items/match_strike.ogg', 15, TRUE)
 	for(var/atom/movable/each_content as anything in contents)
 		on_atom_inited(src, each_content)
@@ -406,17 +407,9 @@
 	immunity_resistance_flags = FREEZE_PROOF
 	lava_temperature = 100
 
-/turf/open/lava/plasma/examine(mob/user)
+/turf/open/lava/plasma/Initialize(mapload)
 	. = ..()
-	. += span_info("Some <b>liquid plasma<b> could probably be scooped up with a <b>container</b>.")
-
-/turf/open/lava/plasma/attackby(obj/item/I, mob/user, list/modifiers)
-	if(!I.is_open_container())
-		return ..()
-	if(!I.reagents.add_reagent(/datum/reagent/toxin/plasma, rand(5, 10)))
-		to_chat(user, span_warning("[I] is full."))
-		return
-	user.visible_message(span_notice("[user] scoops some plasma from the [src] with [I]."), span_notice("You scoop out some plasma from the [src] using [I]."))
+	AddElement(/datum/element/reagent_scoopable_atom, /datum/reagent/toxin/plasma)
 
 /turf/open/lava/plasma/do_burn(atom/movable/burn_target, seconds_per_tick = 1)
 	. = TRUE
@@ -444,7 +437,7 @@
 	var/list/immune_parts = list() // Parts we can't transform because they're not organic or can't be dismembered
 	var/list/transform_parts = list() // Parts we want to transform
 
-	for(var/obj/item/bodypart/burn_limb as anything in burn_human.bodyparts)
+	for(var/obj/item/bodypart/burn_limb as anything in burn_human.get_bodyparts())
 		if(!IS_ORGANIC_LIMB(burn_limb) || !burn_limb.can_dismember())
 			immune_parts += burn_limb
 			continue

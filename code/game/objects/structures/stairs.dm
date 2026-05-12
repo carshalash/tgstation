@@ -326,6 +326,7 @@
 	icon_state = "stairs_frame"
 	density = FALSE
 	anchored = FALSE
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5)
 	/// What type of stack will this drop on deconstruction?
 	var/frame_stack = /obj/item/stack/rods
 	/// How much of frame_stack should this drop on deconstruction?
@@ -335,10 +336,11 @@
 	name = "wooden stairs frame"
 	desc = "Everything you need to build a staircase, minus the actual stairs. This one is made of wood."
 	frame_stack = /obj/item/stack/sheet/mineral/wood
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 10)
 
 /obj/structure/stairs_frame/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/simple_rotation)
+	AddElement(/datum/element/simple_rotation)
 
 /obj/structure/stairs_frame/examine(mob/living/carbon/human/user)
 	. = ..()

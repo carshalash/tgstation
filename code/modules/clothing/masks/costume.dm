@@ -31,8 +31,7 @@
 	clothing_flags = MASKINTERNALS
 	flags_inv = HIDESNOUT
 
-/obj/item/clothing/mask/joy/Initialize(mapload)
-	. = ..()
+/obj/item/clothing/mask/joy/setup_reskins()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/joy_mask, infinite = TRUE)
 
 /obj/item/clothing/mask/mummy
@@ -76,6 +75,7 @@
 /obj/item/clothing/mask/kitsune/attack_self(mob/user)
 	adjust_visor(user)
 	alternate_worn_layer = up ? ABOVE_BODY_FRONT_HEAD_LAYER : null
+	flags_inv = up ? NONE : (HIDEFACE|HIDEFACIALHAIR)
 
 /obj/item/clothing/mask/rebellion
 	name = "rebellion mask"
@@ -93,3 +93,4 @@
 	greyscale_config = /datum/greyscale_config/rebellion_mask
 	greyscale_config_worn = /datum/greyscale_config/rebellion_mask/worn
 	flags_1 = IS_PLAYER_COLORABLE_1
+	custom_materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT)

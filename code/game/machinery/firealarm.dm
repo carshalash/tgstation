@@ -72,9 +72,7 @@
 	soundloop = new(src, FALSE)
 	set_wires(new /datum/wires/firealarm(src))
 
-	AddComponent(/datum/component/usb_port, list(
-		/obj/item/circuit_component/firealarm,
-	))
+	AddComponent(/datum/component/usb_port, typecacheof(list(/obj/item/circuit_component/firealarm), only_root_path = TRUE))
 
 	AddComponent( \
 		/datum/component/redirect_attack_hand_from_turf, \
@@ -672,7 +670,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/firealarm, 26)
 	alarm_trigger = add_input_port("Set", PORT_TYPE_SIGNAL)
 	reset_trigger = add_input_port("Reset", PORT_TYPE_SIGNAL)
 
-	is_on = add_output_port("Is On", PORT_TYPE_NUMBER)
+	is_on = add_output_port("Is On", PORT_TYPE_BOOLEAN)
 	triggered = add_output_port("Triggered", PORT_TYPE_SIGNAL)
 	reset = add_output_port("Reset", PORT_TYPE_SIGNAL)
 
