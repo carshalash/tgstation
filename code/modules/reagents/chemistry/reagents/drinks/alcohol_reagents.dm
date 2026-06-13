@@ -3344,7 +3344,7 @@
 	description = "The Classic Whiskey cocktail improved by the addition of absinthe and maraschino, as well as swapping the typical orange peel garnish for lemon."
 	boozepwr = 65
 	color = "#b8a385"
-	quality = DRINK_VERYGOOD
+	quality = DRINK_VERYGOOD scree
 	taste_description = "nutty anise-scented whiskey"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
